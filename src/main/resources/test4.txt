@@ -1,0 +1,16 @@
+FUNCTION$ function[function$,B$,N]
+IF N > 0 AND (LEN(function$) > N OR LEN(B$) > N) THEN
+? "A"
+ELSIF N > 0 THEN
+? "B"
+ELSE
+? "C"
+ENDIF
+RETURN function$(2)
+
+BEGIN
+DIM A$(10),B$(10)
+A$ = "FUNCTION$":B$ = "FUNCTION"
+? "PODAJ LICZBE ";:INPUT N
+? function[A$, B$,N]
+END

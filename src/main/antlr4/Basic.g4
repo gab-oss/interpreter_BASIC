@@ -1,83 +1,95 @@
 grammar Basic;
 
-program               : predefined* BEGIN NL instructions* END NL instructions* ;
+program               : predefined* BEGIN NL instructions* END NL (instructions | procReturn)* ;
 
 predefined            : stringFunction | intFunction | procedure ;
 
-intFunction           : INT_FUN call NL
+intFunction           : INT_FUN funSignature NL
                         instructions
-                        RETURN (intArg | call) NL;
+                        intReturn NL;
 
-stringFunction        : STRING_FUN call NL
+stringFunction        : STRING_FUN funSignature NL
                         instructions
-                        RETURN (stringArg | call) NL ;
+                        stringReturn NL ;
 
-procedure             : SUB call NL
+procedure             : SUB funSignature NL
                         instructions
-                        RETURN NL ;
+                        procReturn ;
 
-for                   : FOR intAssignment TO intArg NL
+r_for                 : FOR intAssignment TO intArg NL
                         instructions
-                        NEXT ID NL ;
+                        NEXT ID ;
 
-if                    : IF condition THEN NL
+r_if                  : IF condition THEN NL
                         instructions
                         ((ELSIF condition THEN NL
                         instructions+)*
                         ELSE NL
                         instructions+)?
-                        ENDIF NL ;
+                        ENDIF ;
+
+procReturn            : RETURN NL ;
+
+funReturn             : intReturn | stringReturn ;
+
+intReturn             : RETURN (intArg | funSignature) ;
+
+stringReturn          : RETURN (stringArg | funSignature) ;
 
 instructions          : (label? instruction NL)+ ;
 
 instruction           : intDefinition | stringDeclaration | intAssignment | stringAssignment | input | print
-                      | read | goto | gosub | call | if | for ;
+                      | read | r_goto | gosub | funSignature | r_if | r_for ;
 
 condition             : comp (LOG_OPERATOR comp)* ;
 
-comp                  : term (COMP_OPERATOR term)* ;
+comp                  : logTerm (COMP_OPERATOR logTerm)* ;
 
-artmExpr              : additiveExpr (ADD_OPERATOR additiveExpr)* ;
+logTerm               : NUMBER | ID | funSignature | artmExpr | ( LEFT_PARENTHESES condition RIGHT_PARENTHESES ) ;
+
+artmExpr              : additiveExpr ((PLUS | MINUS) additiveExpr)* ;
 
 additiveExpr          : multExpression (MULTI_OPERATOR multExpression)* ;
 
-multExpression        : term ;
+multExpression        : MINUS? term ;
 
-term                  : NUMBER | ID | call | ( LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ) ;
+term                  : NUMBER | ID | funSignature | len | ( LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ) ;
 
 intDefinition         : LET intAssignment (COMMA intAssignment)* ;
 
-stringDeclaration     : DIM STRING_ID LEFT_PARENTHESES (intArg | call)  RIGHT_PARENTHESES ;
+stringDeclaration     : DIM substringOrDecl (COMMA substringOrDecl)* ;
 
-intAssignment         : ID ASSIGN (intArg | call) ;
+intAssignment         : ID ASSIGN (intArg | funSignature) ;
 
-stringAssignment      : STRING_ID ASSIGN (stringArg | call) ;
+stringAssignment      : (STRING_ID | substringOrDecl) ASSIGN (stringArg | funSignature) ;
 
-len                   : LEN LEFT_PARENTHESES (stringArg | call) RIGHT_PARENTHESES ;
+len                   : LEN  LEFT_PARENTHESES (stringArg | funSignature) RIGHT_PARENTHESES;
 
 input                 : INPUT ID (COMMA ID)* ;
 
 print                 : PRINT arg (SEMICOLON arg)* SEMICOLON? ;
 
-read                  : READ ID (COMMA ID)* ;
+read                  : READ STRING_ID (COMMA STRING_ID)* ;
 
-goto                  : GOTO ID ;
+r_goto                  : GOTO ID ;
 
 gosub                 : GOSUB ID ;
 
 label                 : ID NUMBER_SIGN ;
 
-call                  : ID callArgs ;
+funSignature          : ID callArgs ;
 
 callArgs              : LEFT_BRACKET ((arg COMMA)* arg)? RIGHT_BRACKET ;
 
-arg                   : intArg | stringArg | call;
+callArg               : LEFT_PARENTHESES (intArg | funSignature) RIGHT_PARENTHESES ;
+
+arg                   : intArg | stringArg | funSignature;
 
 intArg                : NUMBER | ID | artmExpr | len;
 
-stringArg             : STRING | STRING_ID | substring ;
+stringArg             : STRING | STRING_ID | substringOrDecl ;
 
-substring             : STRING_ID LEFT_PARENTHESES (ID | NUMBER) RIGHT_PARENTHESES ;
+substringOrDecl       : STRING_ID callArg ;
 
 BEGIN                 : 'BEGIN' ;
 
@@ -125,9 +137,11 @@ GOSUB                 : 'GOSUB' ;
 
 LOG_OPERATOR          : 'AND' | 'OR' ;
 
-COMP_OPERATOR         : '==' | '<=' | '>='  | '<' | '>' ;
+COMP_OPERATOR         : '==' | '<=' | '>='  | '<' | '>' | '<>' ;
 
-ADD_OPERATOR          : '+' | MINUS ;
+PLUS                  : '+' ;
+
+//ADD_OPERATOR        : '+' | MINUS ;
 
 MINUS                 : '-' ;
 
@@ -157,7 +171,7 @@ STRING_ID             : ID DOLLAR ;
 
 ID                    : LETTER (LETTER | DIGIT | '_')* ;
 
-NUMBER                : MINUS? DIGIT+ ;
+NUMBER                : DIGIT+ ;
 
 fragment DIGIT        : [0-9] ;
 
@@ -166,3 +180,5 @@ fragment LETTER       : [A-Za-z] ;
 NL                    : ('\r'? '\n' | '\r' | ':')+ ;
 
 WH                    : (' ' | '\t') -> skip ;
+
+COMMENT               : ('REM' ~( '\n' | '\r' | ':')* NL ) -> skip ;
