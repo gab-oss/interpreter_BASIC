@@ -59,7 +59,7 @@ intDefinition         : LET intAssignment (COMMA intAssignment)* ;
 
 stringDeclaration     : DIM substringOrDecl (COMMA substringOrDecl)* ;
 
-intAssignment         : ID ASSIGN (intArg | funSignature) ;
+intAssignment         : ID ASSIGN intArg;
 
 stringAssignment      : (STRING_ID | substringOrDecl) ASSIGN (stringArg | funSignature) ;
 
@@ -81,11 +81,11 @@ funSignature          : ID callArgs ;
 
 callArgs              : LEFT_BRACKET ((arg COMMA)* arg)? RIGHT_BRACKET ;
 
-callArg               : LEFT_PARENTHESES (intArg | funSignature) RIGHT_PARENTHESES ;
+callArg               : LEFT_PARENTHESES intArg RIGHT_PARENTHESES ;
 
-arg                   : intArg | stringArg | funSignature;
+arg                   : intArg | stringArg;
 
-intArg                : NUMBER | ID | artmExpr | len;
+intArg                : artmExpr;
 
 stringArg             : STRING | STRING_ID | substringOrDecl ;
 
@@ -137,7 +137,7 @@ GOSUB                 : 'GOSUB' ;
 
 LOG_OPERATOR          : 'AND' | 'OR' ;
 
-COMP_OPERATOR         : '==' | '<=' | '>='  | '<' | '>' | '<>' ;
+COMP_OPERATOR         : '<' | '>' | '<>' | '==' | '<=' | '>='  ;
 
 PLUS                  : '+' ;
 

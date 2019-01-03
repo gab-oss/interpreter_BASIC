@@ -1,4 +1,4 @@
-// Generated from Basic.g4 by ANTLR 4.7
+// Generated from C:/Users/gabos/IdeaProjects/basic/src/main/antlr4\Basic.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
