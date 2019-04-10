@@ -87,16 +87,6 @@ public interface BasicListener extends ParseTreeListener {
 	 */
 	void exitProcReturn(BasicParser.ProcReturnContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#funReturn}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunReturn(BasicParser.FunReturnContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#funReturn}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunReturn(BasicParser.FunReturnContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link BasicParser#intReturn}.
 	 * @param ctx the parse tree
 	 */
@@ -356,16 +346,6 @@ public interface BasicListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArg(BasicParser.ArgContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BasicParser#intArg}.
-	 * @param ctx the parse tree
-	 */
-	void enterIntArg(BasicParser.IntArgContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#intArg}.
-	 * @param ctx the parse tree
-	 */
-	void exitIntArg(BasicParser.IntArgContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BasicParser#stringArg}.
 	 * @param ctx the parse tree

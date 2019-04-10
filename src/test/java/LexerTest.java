@@ -1,14 +1,10 @@
-import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.TokenStream;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,5 +125,28 @@ public class LexerTest {
         assertEquals(tokens.get(1).getType(), BasicLexer.COMP_OPERATOR);
         assertEquals(tokens.get(1).getText(), "<=");
         assertEquals(tokens.get(2).getType(), BasicLexer.ID);
+    }
+
+    @Test
+    public void commentIsSkipped() throws IOException {
+
+        String string = "REM ffffffffff \n";
+        List<Token> tokens = new ArrayList<Token>();
+        InputStream is = new ByteArrayInputStream(string.getBytes());
+        CharStream chs = new org.antlr.v4.runtime.ANTLRInputStream(is);
+
+        BasicLexer lexer = new BasicLexer(chs);
+
+        while(true) {
+            Token token = lexer.nextToken();
+            tokens.add(token);
+
+            if (token.getType() == EOF) {
+                break;
+            }
+        }
+
+        assertEquals(tokens.get(0).getType(), EOF);
+        assertEquals(tokens.size(), 1);
     }
 }

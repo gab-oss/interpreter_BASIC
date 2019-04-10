@@ -58,12 +58,6 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProcReturn(BasicParser.ProcReturnContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#funReturn}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunReturn(BasicParser.FunReturnContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link BasicParser#intReturn}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -219,12 +213,6 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitArg(BasicParser.ArgContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BasicParser#intArg}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIntArg(BasicParser.IntArgContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BasicParser#stringArg}.
 	 * @param ctx the parse tree

@@ -4,7 +4,6 @@ BasicParser$LabelContext.class
 BasicParser$CallArgContext.class
 BasicParser$ProcReturnContext.class
 BasicParser$AdditiveExprContext.class
-BasicParser$IntArgContext.class
 BasicParser$IntDefinitionContext.class
 BasicParser$StringDeclarationContext.class
 BasicParser$PredefinedContext.class
@@ -12,7 +11,6 @@ BasicParser$ProcedureContext.class
 BasicParser$ReadContext.class
 BasicParser$ProgramContext.class
 BasicBaseVisitor.class
-BasicParser$FunReturnContext.class
 BasicParser$StringReturnContext.class
 BasicParser$CompContext.class
 BasicParser$TermContext.class

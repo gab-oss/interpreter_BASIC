@@ -1,6 +1,10 @@
-C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\ChatVisitor.java
-C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\ChatBaseVisitor.java
-C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\ChatLexer.java
-C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\ChatListener.java
-C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\ChatBaseListener.java
-C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\ChatParser.java
+C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\BasicParser.java
+C:\Users\gabos\IdeaProjects\basic\src\main\java\TokenPrinter.java
+C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\BasicListener.java
+C:\Users\gabos\IdeaProjects\basic\src\main\java\TreePrinter.java
+C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\BasicLexer.java
+C:\Users\gabos\IdeaProjects\basic\src\main\java\BASICInterpreter.java
+C:\Users\gabos\IdeaProjects\basic\src\main\java\StructureLoader.java
+C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\BasicBaseListener.java
+C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\BasicVisitor.java
+C:\Users\gabos\IdeaProjects\basic\target\generated-sources\antlr4\BasicBaseVisitor.java

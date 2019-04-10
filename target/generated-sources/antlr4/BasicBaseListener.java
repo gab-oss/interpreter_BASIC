@@ -111,18 +111,6 @@ public class BasicBaseListener implements BasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunReturn(BasicParser.FunReturnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunReturn(BasicParser.FunReturnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIntReturn(BasicParser.IntReturnContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -430,18 +418,6 @@ public class BasicBaseListener implements BasicListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArg(BasicParser.ArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIntArg(BasicParser.IntArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIntArg(BasicParser.IntArgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
