@@ -1,4 +1,4 @@
-public class TokenAnalyzer {
+public class BASICInterpreter {
     public static void main(String[] args) {
         String fileName = args[0] ;
 

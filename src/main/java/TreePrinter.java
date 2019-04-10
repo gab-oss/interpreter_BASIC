@@ -29,11 +29,6 @@ public class TreePrinter {
 
     public void print(){
 
-
-        BasicBaseVisitor visitor = new BasicVisitorImpl(new SymbolTable());
-        visitor.visit(tree);
-        ((BasicVisitorImpl) visitor).getSymbolTable().printVariableStack();
-
         JPanel container = new JPanel();
         container.add(treev);
 
