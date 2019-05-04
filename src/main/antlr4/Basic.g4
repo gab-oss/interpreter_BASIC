@@ -41,11 +41,11 @@ instruction           : intDefinition | stringDeclaration | intAssignment | stri
 
 condition             : comp (LOG_OPERATOR comp)* ;
 
-comp                  : logTerm (COMP_OPERATOR logTerm)* ;
+comp                  : logTerm (COMP_OPERATOR logTerm)? ;
 
 logTerm               : artmExpr | ( LEFT_PARENTHESES condition RIGHT_PARENTHESES ) ;
 
-artmExpr              : additiveExpr ((PLUS | MINUS) additiveExpr)* ;
+artmExpr              : additiveExpr (ADD_OPERATOR additiveExpr)* ;
 
 additiveExpr          : multExpression (MULTI_OPERATOR multExpression)* ;
 
@@ -73,6 +73,7 @@ r_goto                : GOTO ID ;
 
 gosub                 : GOSUB ID ;
 
+//wyjebac? - gosub, procedury po return, goto ...
 label                 : ID NUMBER_SIGN ;
 
 funSignature          : ID callArgs ;
@@ -137,7 +138,7 @@ COMP_OPERATOR         : '<' | '>' | '<>' | '==' | '<=' | '>='  ;
 
 PLUS                  : '+' ;
 
-//ADD_OPERATOR        : '+' | MINUS ;
+ADD_OPERATOR          : '+' | MINUS ;
 
 MINUS                 : '-' ;
 

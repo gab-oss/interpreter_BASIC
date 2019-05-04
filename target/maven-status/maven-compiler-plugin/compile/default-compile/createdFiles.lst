@@ -6,6 +6,7 @@ BasicParser$ProcReturnContext.class
 BasicParser$AdditiveExprContext.class
 BasicParser$IntDefinitionContext.class
 BasicParser$StringDeclarationContext.class
+instructions\Instruction.class
 BasicParser$PredefinedContext.class
 BasicParser$ProcedureContext.class
 BasicParser$ReadContext.class
@@ -17,6 +18,7 @@ BasicParser$TermContext.class
 BasicParser$FunSignatureContext.class
 BasicParser$ConditionContext.class
 BasicParser$StringAssignmentContext.class
+instructions\CallArg.class
 BasicParser$StringArgContext.class
 BasicParser$ArtmExprContext.class
 BasicParser$LenContext.class
@@ -28,9 +30,11 @@ BasicParser$IntAssignmentContext.class
 BasicParser$ArgContext.class
 BasicParser$InstructionsContext.class
 BasicParser$R_gotoContext.class
+instructions\ArtmExpr.class
 BasicVisitor.class
 BasicParser$LogTermContext.class
 BasicParser$InputContext.class
+instructions\SubstringOrDecl.class
 BasicParser$R_forContext.class
 BasicParser$StringFunctionContext.class
 BasicLexer.class
