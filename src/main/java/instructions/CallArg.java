@@ -7,6 +7,8 @@ public class CallArg implements Instruction {
     public CallArg(ArtmExpr artmExpr) {
 
         this.artmExpr = artmExpr;
+        System.out.println("CallArg created");
+
     }
 
     @Override

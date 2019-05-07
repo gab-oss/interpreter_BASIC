@@ -27,18 +27,6 @@ public class BasicBaseListener implements BasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPredefined(BasicParser.PredefinedContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPredefined(BasicParser.PredefinedContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIntFunction(BasicParser.IntFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -99,18 +87,6 @@ public class BasicBaseListener implements BasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProcReturn(BasicParser.ProcReturnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitProcReturn(BasicParser.ProcReturnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIntReturn(BasicParser.IntReturnContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -135,25 +111,25 @@ public class BasicBaseListener implements BasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInstructions(BasicParser.InstructionsContext ctx) { }
+	@Override public void enterR_instructions(BasicParser.R_instructionsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInstructions(BasicParser.InstructionsContext ctx) { }
+	@Override public void exitR_instructions(BasicParser.R_instructionsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInstruction(BasicParser.InstructionContext ctx) { }
+	@Override public void enterR_instruction(BasicParser.R_instructionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInstruction(BasicParser.InstructionContext ctx) { }
+	@Override public void exitR_instruction(BasicParser.R_instructionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -339,73 +315,13 @@ public class BasicBaseListener implements BasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterR_goto(BasicParser.R_gotoContext ctx) { }
+	@Override public void enterFunCall(BasicParser.FunCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitR_goto(BasicParser.R_gotoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGosub(BasicParser.GosubContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGosub(BasicParser.GosubContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLabel(BasicParser.LabelContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLabel(BasicParser.LabelContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFunSignature(BasicParser.FunSignatureContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunSignature(BasicParser.FunSignatureContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCallArgs(BasicParser.CallArgsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCallArgs(BasicParser.CallArgsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCallArg(BasicParser.CallArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCallArg(BasicParser.CallArgContext ctx) { }
+	@Override public void exitFunCall(BasicParser.FunCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -435,13 +351,13 @@ public class BasicBaseListener implements BasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSubstringOrDecl(BasicParser.SubstringOrDeclContext ctx) { }
+	@Override public void enterSubstring(BasicParser.SubstringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSubstringOrDecl(BasicParser.SubstringOrDeclContext ctx) { }
+	@Override public void exitSubstring(BasicParser.SubstringContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

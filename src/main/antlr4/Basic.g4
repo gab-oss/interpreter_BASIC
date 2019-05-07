@@ -1,67 +1,63 @@
 grammar Basic;
 
-program               : predefined* BEGIN NL instructions* END NL (instructions procReturn)* ;
+program               : (stringFunction | intFunction | procedure)* BEGIN NL r_instructions END NL ;
 
-predefined            : stringFunction | intFunction | procedure ;
-
-intFunction           : INT_FUN funSignature NL
-                        instructions
+intFunction           : INT_FUN ID LEFT_BRACKET ((ID | STRING_ID) (COMMA (ID | STRING_ID))*)? RIGHT_BRACKET NL
+                        r_instructions
                         intReturn NL;
 
-stringFunction        : STRING_FUN funSignature NL
-                        instructions
+stringFunction        : STRING_FUN ID LEFT_BRACKET ((ID | STRING_ID) (COMMA (ID | STRING_ID))*)? RIGHT_BRACKET NL
+                        r_instructions
                         stringReturn NL ;
 
-procedure             : SUB funSignature NL
-                        instructions
-                        procReturn ;
+procedure             : SUB ID LEFT_BRACKET ((ID | STRING_ID) (COMMA (ID | STRING_ID))*)? RIGHT_BRACKET NL
+                        r_instructions
+                        RETURN NL ;
 
 r_for                 : FOR intAssignment TO artmExpr NL
-                        instructions
+                        r_instructions
                         NEXT ID ;
 
 r_if                  : IF condition THEN NL
-                        instructions
+                        r_instructions
                         ((ELSIF condition THEN NL
-                        instructions+)*
+                        r_instructions)*
                         ELSE NL
-                        instructions+)?
+                        r_instructions)?
                         ENDIF ;
-
-procReturn            : RETURN NL ;
 
 intReturn             : RETURN artmExpr ;
 
-stringReturn          : RETURN (stringArg | funSignature) ;
+stringReturn          : RETURN (stringArg | funCall) ;
 
-instructions          : (label? instruction NL)+ ;
+r_instructions          : (r_instruction NL)+ ;
 
-instruction           : intDefinition | stringDeclaration | intAssignment | stringAssignment | input | print
-                      | read | r_goto | gosub | funSignature | r_if | r_for | procReturn | intReturn | stringReturn;
+r_instruction           : intDefinition | stringDeclaration | intAssignment | stringAssignment | input | print
+                      | read | funCall | r_if | r_for ;
 
 condition             : comp (LOG_OPERATOR comp)* ;
 
-comp                  : logTerm (COMP_OPERATOR logTerm)? ;
+comp                  : logTerm (COMP_OPERATOR logTerm)* ;
 
 logTerm               : artmExpr | ( LEFT_PARENTHESES condition RIGHT_PARENTHESES ) ;
 
-artmExpr              : additiveExpr (ADD_OPERATOR additiveExpr)* ;
+artmExpr              : additiveExpr ((PLUS | MINUS) additiveExpr)* ;
 
 additiveExpr          : multExpression (MULTI_OPERATOR multExpression)* ;
 
 multExpression        : MINUS? term ;
 
-term                  : NUMBER | ID | funSignature | len | ( LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ) ;
+term                  : NUMBER | ID | funCall | len | ( LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ) ;
 
 intDefinition         : LET intAssignment (COMMA intAssignment)* ;
 
-stringDeclaration     : DIM substringOrDecl (COMMA substringOrDecl)* ;
+stringDeclaration     : DIM STRING_ID LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES (COMMA STRING_ID LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES)* ;
 
 intAssignment         : ID ASSIGN artmExpr;
 
-stringAssignment      : (STRING_ID | substringOrDecl) ASSIGN (stringArg | funSignature) ;
+stringAssignment      : (STRING_ID | substring) ASSIGN (stringArg | funCall) ;
 
-len                   : LEN  LEFT_PARENTHESES (stringArg | funSignature) RIGHT_PARENTHESES;
+len                   : LEN  LEFT_PARENTHESES (stringArg | funCall) RIGHT_PARENTHESES;
 
 input                 : INPUT ID (COMMA ID)* ;
 
@@ -69,24 +65,19 @@ print                 : PRINT arg (SEMICOLON arg)* SEMICOLON? ;
 
 read                  : READ STRING_ID (COMMA STRING_ID)* ;
 
-r_goto                : GOTO ID ;
+//r_goto                : GOTO ID ;
+//
+//gosub                 : GOSUB ID ;
+//
+//label                 : ID NUMBER_SIGN ;
 
-gosub                 : GOSUB ID ;
-
-//wyjebac? - gosub, procedury po return, goto ...
-label                 : ID NUMBER_SIGN ;
-
-funSignature          : ID callArgs ;
-
-callArgs              : LEFT_BRACKET ((arg COMMA)* arg)? RIGHT_BRACKET ;
-
-callArg               : LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ;
+funCall               : ID LEFT_BRACKET ((arg COMMA)* arg)? RIGHT_BRACKET ;
 
 arg                   : artmExpr | stringArg;
 
-stringArg             : STRING | STRING_ID | substringOrDecl ;
+stringArg             : STRING | STRING_ID | substring ;
 
-substringOrDecl       : STRING_ID callArg ;
+substring             : STRING_ID LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ;
 
 BEGIN                 : 'BEGIN' ;
 
@@ -138,7 +129,7 @@ COMP_OPERATOR         : '<' | '>' | '<>' | '==' | '<=' | '>='  ;
 
 PLUS                  : '+' ;
 
-ADD_OPERATOR          : '+' | MINUS ;
+//ADD_OPERATOR        : '+' | MINUS ;
 
 MINUS                 : '-' ;
 

@@ -2,10 +2,20 @@ package instructions;
 
 public class LogTerm implements Instruction {
 
-    int value;
+    ArtmExpr artmExpr;
+    Condition condition;
 
-    public LogTerm(String s) {
-        this.value = Integer.parseInt(s);
+    public LogTerm(ArtmExpr ae) {
+        this.artmExpr = artmExpr;
+        System.out.println("LogTerm created with ArtmExpr");
+
+    }
+
+    public LogTerm(Condition condition) {
+
+        this.condition = condition;
+        System.out.println("LogTerm created with Condition");
+
     }
 
     @Override

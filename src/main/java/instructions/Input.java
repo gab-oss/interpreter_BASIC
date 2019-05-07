@@ -9,6 +9,8 @@ public class Input implements Instruction {
     public Input(List<String> ids) {
 
         this.ids = ids;
+        System.out.println("Input created");
+
     }
 
     @Override

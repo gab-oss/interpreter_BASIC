@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="LexerTest" time="0.187" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="LexerTest" time="0.166" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2018.1.5"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -30,7 +30,7 @@
     <property name="os.name" value="Windows 10"/>
     <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.1.5\plugins\maven\lib\maven3\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1250"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Users\gabos\AppData\Local\Microsoft\WindowsApps;;C:\Users\gabos\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\clisp-2.49;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-10.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\STMicroelectronics\STM32 ST-LINK Utility\ST-LINK Utility;C:\Users\gabos\AppData\Local\Microsoft\WindowsApps;;C:\Users\gabos\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\clisp-2.49;."/>
     <property name="jdk.debug" value="release"/>
     <property name="java.class.version" value="54.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -63,10 +63,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="LexerTest" name="idCantStartWithNumber" time="0.176"/>
+  <testcase classname="LexerTest" name="idCantStartWithNumber" time="0.155"/>
   <testcase classname="LexerTest" name="stringIdCantBeCapitalFunctionDollar" time="0"/>
   <testcase classname="LexerTest" name="idEndingWithDollarIsStringId" time="0.001"/>
-  <testcase classname="LexerTest" name="tokensAreRecognizedCorrectlyInWeakInequality" time="0.006"/>
+  <testcase classname="LexerTest" name="tokensAreRecognizedCorrectlyInWeakInequality" time="0.005"/>
   <testcase classname="LexerTest" name="idCanBeLettersNumbersAndUnderscore" time="0.001"/>
-  <testcase classname="LexerTest" name="commentIsSkipped" time="0.003"/>
+  <testcase classname="LexerTest" name="commentIsSkipped" time="0.004"/>
 </testsuite>

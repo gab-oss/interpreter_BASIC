@@ -9,6 +9,8 @@ public class MultExpression implements Instruction {
 
         this.term = term;
         this.positive = positive;
+        System.out.println("MultExpression created");
+
     }
 
     @Override

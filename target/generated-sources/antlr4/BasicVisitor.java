@@ -16,12 +16,6 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgram(BasicParser.ProgramContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#predefined}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPredefined(BasicParser.PredefinedContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link BasicParser#intFunction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -52,12 +46,6 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitR_if(BasicParser.R_ifContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#procReturn}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitProcReturn(BasicParser.ProcReturnContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link BasicParser#intReturn}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -70,17 +58,17 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringReturn(BasicParser.StringReturnContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#instructions}.
+	 * Visit a parse tree produced by {@link BasicParser#r_instructions}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInstructions(BasicParser.InstructionsContext ctx);
+	T visitR_instructions(BasicParser.R_instructionsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#instruction}.
+	 * Visit a parse tree produced by {@link BasicParser#r_instruction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInstruction(BasicParser.InstructionContext ctx);
+	T visitR_instruction(BasicParser.R_instructionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BasicParser#condition}.
 	 * @param ctx the parse tree
@@ -172,41 +160,11 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRead(BasicParser.ReadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#r_goto}.
+	 * Visit a parse tree produced by {@link BasicParser#funCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitR_goto(BasicParser.R_gotoContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BasicParser#gosub}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGosub(BasicParser.GosubContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BasicParser#label}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLabel(BasicParser.LabelContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BasicParser#funSignature}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunSignature(BasicParser.FunSignatureContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BasicParser#callArgs}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCallArgs(BasicParser.CallArgsContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BasicParser#callArg}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCallArg(BasicParser.CallArgContext ctx);
+	T visitFunCall(BasicParser.FunCallContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BasicParser#arg}.
 	 * @param ctx the parse tree
@@ -220,9 +178,9 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringArg(BasicParser.StringArgContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#substringOrDecl}.
+	 * Visit a parse tree produced by {@link BasicParser#substring}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSubstringOrDecl(BasicParser.SubstringOrDeclContext ctx);
+	T visitSubstring(BasicParser.SubstringContext ctx);
 }

@@ -3,11 +3,16 @@ package instructions;
 import java.util.List;
 
 public class StringDeclaration implements Instruction {
-    private final List<SubstringOrDecl> decls;
+    private List<String> ids;
+    private List<ArtmExpr> artmExprs;
 
-    public StringDeclaration(List<SubstringOrDecl> decls) {
-        
-        this.decls = decls;
+    public StringDeclaration(List<String> ids, List<ArtmExpr> artmExprs) {
+
+        this.ids = ids;
+        this.artmExprs = artmExprs;
+
+        System.out.println("StringDeclaration created");
+
     }
 
     @Override

@@ -18,8 +18,8 @@ public class BASICInterpreter {
             e.printStackTrace();
         }
 
-        TokenPrinter tokenPrinter = new TokenPrinter(fileName);
-        tokenPrinter.print();
+//        TokenPrinter tokenPrinter = new TokenPrinter(fileName);
+//        tokenPrinter.print();
 
         TreePrinter treePrinter = new TreePrinter(fileName);
         treePrinter.print();

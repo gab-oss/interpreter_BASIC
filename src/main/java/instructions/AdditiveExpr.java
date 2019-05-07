@@ -7,6 +7,7 @@ public class AdditiveExpr implements Instruction{
     public AdditiveExpr(MultExpression multExpression) {
 
         this.multExpression = multExpression;
+        System.out.println("AdditiveExpr created");
     }
 
     @Override

@@ -7,6 +7,7 @@ public class ArtmExpr implements Instruction {
     public ArtmExpr(AdditiveExpr additiveExpr) {
 
         this.additiveExpr = additiveExpr;
+        System.out.println("ArtmExpr created");
     }
 
     @Override

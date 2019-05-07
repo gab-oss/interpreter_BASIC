@@ -1,0 +1,9 @@
+SUB PROC[B$,N]
+IF N + 1 > 0 THEN
+? B$
+ENDIF
+RETURN
+
+BEGIN
+PROC["FFF", 2]
+END

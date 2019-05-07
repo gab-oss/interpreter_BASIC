@@ -17,16 +17,6 @@ public interface BasicListener extends ParseTreeListener {
 	 */
 	void exitProgram(BasicParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#predefined}.
-	 * @param ctx the parse tree
-	 */
-	void enterPredefined(BasicParser.PredefinedContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#predefined}.
-	 * @param ctx the parse tree
-	 */
-	void exitPredefined(BasicParser.PredefinedContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link BasicParser#intFunction}.
 	 * @param ctx the parse tree
 	 */
@@ -77,16 +67,6 @@ public interface BasicListener extends ParseTreeListener {
 	 */
 	void exitR_if(BasicParser.R_ifContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#procReturn}.
-	 * @param ctx the parse tree
-	 */
-	void enterProcReturn(BasicParser.ProcReturnContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#procReturn}.
-	 * @param ctx the parse tree
-	 */
-	void exitProcReturn(BasicParser.ProcReturnContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link BasicParser#intReturn}.
 	 * @param ctx the parse tree
 	 */
@@ -107,25 +87,25 @@ public interface BasicListener extends ParseTreeListener {
 	 */
 	void exitStringReturn(BasicParser.StringReturnContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#instructions}.
+	 * Enter a parse tree produced by {@link BasicParser#r_instructions}.
 	 * @param ctx the parse tree
 	 */
-	void enterInstructions(BasicParser.InstructionsContext ctx);
+	void enterR_instructions(BasicParser.R_instructionsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link BasicParser#instructions}.
+	 * Exit a parse tree produced by {@link BasicParser#r_instructions}.
 	 * @param ctx the parse tree
 	 */
-	void exitInstructions(BasicParser.InstructionsContext ctx);
+	void exitR_instructions(BasicParser.R_instructionsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#instruction}.
+	 * Enter a parse tree produced by {@link BasicParser#r_instruction}.
 	 * @param ctx the parse tree
 	 */
-	void enterInstruction(BasicParser.InstructionContext ctx);
+	void enterR_instruction(BasicParser.R_instructionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link BasicParser#instruction}.
+	 * Exit a parse tree produced by {@link BasicParser#r_instruction}.
 	 * @param ctx the parse tree
 	 */
-	void exitInstruction(BasicParser.InstructionContext ctx);
+	void exitR_instruction(BasicParser.R_instructionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BasicParser#condition}.
 	 * @param ctx the parse tree
@@ -277,65 +257,15 @@ public interface BasicListener extends ParseTreeListener {
 	 */
 	void exitRead(BasicParser.ReadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#r_goto}.
+	 * Enter a parse tree produced by {@link BasicParser#funCall}.
 	 * @param ctx the parse tree
 	 */
-	void enterR_goto(BasicParser.R_gotoContext ctx);
+	void enterFunCall(BasicParser.FunCallContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link BasicParser#r_goto}.
+	 * Exit a parse tree produced by {@link BasicParser#funCall}.
 	 * @param ctx the parse tree
 	 */
-	void exitR_goto(BasicParser.R_gotoContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BasicParser#gosub}.
-	 * @param ctx the parse tree
-	 */
-	void enterGosub(BasicParser.GosubContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#gosub}.
-	 * @param ctx the parse tree
-	 */
-	void exitGosub(BasicParser.GosubContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BasicParser#label}.
-	 * @param ctx the parse tree
-	 */
-	void enterLabel(BasicParser.LabelContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#label}.
-	 * @param ctx the parse tree
-	 */
-	void exitLabel(BasicParser.LabelContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BasicParser#funSignature}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunSignature(BasicParser.FunSignatureContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#funSignature}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunSignature(BasicParser.FunSignatureContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BasicParser#callArgs}.
-	 * @param ctx the parse tree
-	 */
-	void enterCallArgs(BasicParser.CallArgsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#callArgs}.
-	 * @param ctx the parse tree
-	 */
-	void exitCallArgs(BasicParser.CallArgsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BasicParser#callArg}.
-	 * @param ctx the parse tree
-	 */
-	void enterCallArg(BasicParser.CallArgContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#callArg}.
-	 * @param ctx the parse tree
-	 */
-	void exitCallArg(BasicParser.CallArgContext ctx);
+	void exitFunCall(BasicParser.FunCallContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BasicParser#arg}.
 	 * @param ctx the parse tree
@@ -357,13 +287,13 @@ public interface BasicListener extends ParseTreeListener {
 	 */
 	void exitStringArg(BasicParser.StringArgContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#substringOrDecl}.
+	 * Enter a parse tree produced by {@link BasicParser#substring}.
 	 * @param ctx the parse tree
 	 */
-	void enterSubstringOrDecl(BasicParser.SubstringOrDeclContext ctx);
+	void enterSubstring(BasicParser.SubstringContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link BasicParser#substringOrDecl}.
+	 * Exit a parse tree produced by {@link BasicParser#substring}.
 	 * @param ctx the parse tree
 	 */
-	void exitSubstringOrDecl(BasicParser.SubstringOrDeclContext ctx);
+	void exitSubstring(BasicParser.SubstringContext ctx);
 }
