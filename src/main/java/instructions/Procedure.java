@@ -2,7 +2,7 @@ package instructions;
 
 import java.util.List;
 
-public class Procedure implements Instruction{
+public class Procedure extends Callable{
     private String id;
     private List<String> args;
     private R_instructions rInstructions;
@@ -17,7 +17,7 @@ public class Procedure implements Instruction{
     }
 
     @Override
-    public Object execute(Object object) {
+    public Object execute(Interpreter interpreter) {
         return null;
     }
 }

@@ -1,3 +1,4 @@
+import instructions.Interpreter;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
@@ -9,11 +10,14 @@ public class BASICInterpreter {
         ParseTree tree;
         StructureLoader loader;
         BasicBaseVisitor visitor = new BASICVisitorImpl();
+        Interpreter interpreter;
 
         try {
             loader = new StructureLoader(fileName);
             tree = loader.getParser().program();
             visitor.visit(tree);
+            interpreter = (Interpreter) visitor.visit(tree);
+            interpreter.execute(interpreter);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -23,5 +27,6 @@ public class BASICInterpreter {
 
         TreePrinter treePrinter = new TreePrinter(fileName);
         treePrinter.print();
+
     }
 }

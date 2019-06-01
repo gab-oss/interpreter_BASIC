@@ -12,7 +12,7 @@ public class R_instructions implements Instruction {
     }
 
     @Override
-    public Object execute(Object object) {
+    public Object execute(Interpreter interpreter) {
         return null;
     }
 }

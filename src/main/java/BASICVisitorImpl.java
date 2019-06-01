@@ -11,29 +11,35 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
 //
 
     @Override
-    public Program visitProgram(BasicParser.ProgramContext ctx) {
+    public Interpreter visitProgram(BasicParser.ProgramContext ctx) {
 
-
-        List<StringFunction> stringFunctions = new ArrayList<StringFunction>();
-        List<IntFunction> intFunctions = new ArrayList<IntFunction>();
-        List<Procedure> procedures = new ArrayList<Procedure>();
-        R_instructions rInstructions;
-
-        for (BasicParser.StringFunctionContext strCtx: ctx.stringFunction()) {
-            stringFunctions.add(visitStringFunction(strCtx));
+        Interpreter interpreter = new Interpreter();
+        for (ParseTree child:ctx.children) {
+            interpreter.pushInstruction(visit(child));
         }
 
-        for (BasicParser.IntFunctionContext intCtx: ctx.intFunction()) {
-            intFunctions.add(visitIntFunction(intCtx));
-        }
+        return interpreter;
 
-        for (BasicParser.ProcedureContext procCtx: ctx.procedure()) {
-            procedures.add(visitProcedure(procCtx));
-        }
-
-        rInstructions = visitR_instructions(ctx.r_instructions());
-
-        return new Program(stringFunctions, intFunctions, procedures, rInstructions);
+//        List<StringFunction> stringFunctions = new ArrayList<StringFunction>();
+//        List<IntFunction> intFunctions = new ArrayList<IntFunction>();
+//        List<Procedure> procedures = new ArrayList<Procedure>();
+//        R_instructions rInstructions;
+//
+//        for (BasicParser.StringFunctionContext strCtx: ctx.stringFunction()) {
+//            stringFunctions.add(visitStringFunction(strCtx));
+//        }
+//
+//        for (BasicParser.IntFunctionContext intCtx: ctx.intFunction()) {
+//            intFunctions.add(visitIntFunction(intCtx));
+//        }
+//
+//        for (BasicParser.ProcedureContext procCtx: ctx.procedure()) {
+//            procedures.add(visitProcedure(procCtx));
+//        }
+//
+//        rInstructions = visitR_instructions(ctx.r_instructions());
+//
+//        return new Program(stringFunctions, intFunctions, procedures, rInstructions);
     }
 
 

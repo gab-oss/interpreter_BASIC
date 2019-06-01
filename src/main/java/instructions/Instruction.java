@@ -2,5 +2,5 @@ package instructions;
 
 public interface Instruction {
 
-    Object execute(Object object);
+    Object execute(Interpreter interpreter);
 }

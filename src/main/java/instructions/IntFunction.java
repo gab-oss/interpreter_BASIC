@@ -2,7 +2,7 @@ package instructions;
 
 import java.util.List;
 
-public class IntFunction implements Instruction {
+public class IntFunction extends Callable{
 
     private String id;
     private List<String> args;
@@ -20,7 +20,7 @@ public class IntFunction implements Instruction {
     }
 
     @Override
-    public Object execute(Object object) {
+    public Object execute(Interpreter interpreter) {
         return null;
     }
 }

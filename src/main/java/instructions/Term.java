@@ -44,7 +44,30 @@ public class Term implements Instruction {
     }
 
     @Override
-    public Object execute(Object object) {
-        return null;
+    public Object execute(Interpreter interpreter) {
+
+
+//        String number;
+//        String id;
+//        FunCall funCall;
+//        Len len;
+//        ArtmExpr artmExpr;
+
+      if (number != null) {
+          return number;
+      }
+      if (id != null) {
+          return id;
+      }
+      if (funCall != null) {
+          return funCall.execute(interpreter);
+      }
+      if (len != null) {
+          return len.execute(interpreter);
+      }
+      if (artmExpr != null) {
+          return artmExpr.execute(interpreter);
+      }
+      return null;
     }
 }
