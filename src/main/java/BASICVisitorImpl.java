@@ -404,7 +404,8 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction> {
     public StringArg visitStringArg(BasicParser.StringArgContext ctx) {
 
         if (ctx.STRING() != null) {
-            return new StringArg(ctx.STRING().toString());
+            String s = ctx.STRING().toString();
+            return new StringArg(s.substring(1, s.length() - 1));
         } else if (ctx.STRING_ID() != null) {
             return new StringArg(ctx.STRING_ID());
         } else {
