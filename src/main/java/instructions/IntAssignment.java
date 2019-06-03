@@ -15,6 +15,16 @@ public class IntAssignment implements Instruction{
 
     @Override
     public Object execute(Interpreter interpreter) {
+
+        int value = (Integer)artmExpr.execute(interpreter);
+
+        if (!interpreter.replaceVar(id, value))
+            throw new RuntimeException("Integer not declared");
+
         return null;
+    }
+
+    public String getId() {
+        return id;
     }
 }

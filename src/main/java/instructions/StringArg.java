@@ -28,6 +28,22 @@ public class StringArg  implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+
+        if (substring != null) {
+            return substring.execute(interpreter);
+        }
+        if (stringId != null) {
+            String s = (String)interpreter.getVar(stringId.toString());
+            if (s == null) {
+                throw new RuntimeException("String not declared");
+            } else {
+                return s;
+            }
+
+        }
+        if(value != null) {
+            return value;
+        }
         return null;
     }
 }

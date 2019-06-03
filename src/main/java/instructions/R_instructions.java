@@ -11,8 +11,16 @@ public class R_instructions implements Instruction {
         this.instructions = instructions;
     }
 
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
+
     @Override
     public Object execute(Interpreter interpreter) {
+
+        for (Instruction instruction: instructions) {
+            instruction.execute(interpreter);
+        }
         return null;
     }
 }

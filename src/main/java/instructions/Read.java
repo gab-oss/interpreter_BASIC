@@ -1,6 +1,7 @@
 package instructions;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Read implements Instruction {
 
@@ -15,6 +16,16 @@ public class Read implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        for(String var: vars) {
+            if (!interpreter.replaceVar(var, scanner.next())) {
+                throw new RuntimeException("Tried to read nonexisting variable");
+            }
+
+        }
+
         return null;
     }
 }

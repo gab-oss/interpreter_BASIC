@@ -16,6 +16,22 @@ public class Substring implements Instruction {
     @Override
     public Object execute(Interpreter interpreter) {
 
-        return null;
+        String s = (String)interpreter.getVar(stringId);
+
+        if (s != null) {
+            return s.substring((Integer) artmExpr.execute(interpreter));
+
+        } else {
+            System.out.println("String " + stringId + " doesn't exist");
+            return null;
+        }
+    }
+
+    public String getStringId() {
+        return stringId;
+    }
+
+    public int getBeginIndex(Interpreter interpreter) {
+        return (Integer)artmExpr.execute(interpreter);
     }
 }

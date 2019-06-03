@@ -6,10 +6,9 @@ public class StringDeclaration implements Instruction {
     private List<String> ids;
     private List<ArtmExpr> artmExprs;
 
-    public StringDeclaration(List<String> ids, List<ArtmExpr> artmExprs) {
+    public StringDeclaration(List<String> ids) {
 
         this.ids = ids;
-        this.artmExprs = artmExprs;
 
         System.out.println("StringDeclaration created");
 
@@ -17,6 +16,10 @@ public class StringDeclaration implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+
+        for (int i = 0; i < ids.size(); ++i) {
+            interpreter.putVar(ids.get(i), null);
+        }
         return null;
     }
 }

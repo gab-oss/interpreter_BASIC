@@ -127,16 +127,6 @@ public interface BasicListener extends ParseTreeListener {
 	 */
 	void exitComp(BasicParser.CompContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link BasicParser#logTerm}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogTerm(BasicParser.LogTermContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#logTerm}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogTerm(BasicParser.LogTermContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link BasicParser#artmExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -226,16 +216,6 @@ public interface BasicListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLen(BasicParser.LenContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BasicParser#input}.
-	 * @param ctx the parse tree
-	 */
-	void enterInput(BasicParser.InputContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BasicParser#input}.
-	 * @param ctx the parse tree
-	 */
-	void exitInput(BasicParser.InputContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BasicParser#print}.
 	 * @param ctx the parse tree

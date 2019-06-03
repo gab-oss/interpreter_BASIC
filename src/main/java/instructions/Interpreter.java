@@ -3,19 +3,20 @@ package instructions;
 import java.util.*;
 
 public class Interpreter implements Instruction{
-    private Map<String, Object> globals = new HashMap<String, Object>();
-    private Set<Callable> functions = new HashSet<Callable>();
-    private Stack<List<Map<String, Object>>> vars = new Stack<List<Map<String, Object>>>();
+    private Map<String, Object> globals;
+    private Set<Callable> callables;
+    private Stack<List<Map<String, Object>>> vars;
 
-    private List<Instruction> instructions = new LinkedList();
+    private List<Instruction> instructions;
 
     public Interpreter() {
         globals = new HashMap<String, Object>();
-        functions = new HashSet<Callable>();
+        callables = new HashSet<Callable>();
         vars = new Stack<List<Map<String, Object>>>();
         List<Map<String, Object>> globalContext = new LinkedList<Map<String, Object>>();
         globalContext.add(globals);
         vars.push(globalContext);
+        instructions = new LinkedList();
     }
 
     void putVar(String id, Object value) {
@@ -33,7 +34,8 @@ public class Interpreter implements Instruction{
     boolean replaceVar(String id, Object value)
     {
         for (Map<String, Object> var:vars.peek()) {
-            if(var.containsKey(id) && var.get(id).getClass().equals(value.getClass()))
+        //    if(var.containsKey(id) && var.get(id).getClass().equals(value.getClass()))
+            if(var.containsKey(id))
             {
                 var.put(id, value);
                 return true;
@@ -42,12 +44,12 @@ public class Interpreter implements Instruction{
         return false;
     }
 
-    void pushFunctionContext()
+    void pushCallableContext()
     {
         vars.push(new LinkedList<Map<String, Object>>());
     }
 
-    void popFunctionContext()
+    void popCallableContext()
     {
         vars.pop();
     }
@@ -63,8 +65,13 @@ public class Interpreter implements Instruction{
     }
 
     @Override
-    public Object execute(Object interpreter) {
+    public Object execute(Interpreter interpreter) {
+        if(instructions.isEmpty()) {
+            System.out.println("EMPTY");
+        }
         for (Instruction instruction:instructions) {
+            System.out.println( "EXECUTING" + instruction.toString());
+
             instruction.execute(this);
         }
         return null;
@@ -75,14 +82,15 @@ public class Interpreter implements Instruction{
         instructions.add(i);
     }
 
-    public Boolean pushFunction(Callable f)
+    public Boolean pushCallable(Callable c)
     {
-        return functions.add(f);
+        System.out.println("PUSHED CALLABLE");
+        return callables.add(c);
     }
 
-    public Callable getFunction(String id)
+    public Callable getCallable(String id)
     {
-        for (Callable func:functions) {
+        for (Callable func: callables) {
             if(id.equals(func.getId()))
                 return func;
         }

@@ -15,6 +15,9 @@ public class Print implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+        for (Arg arg: args) {
+            System.out.println(arg.execute(interpreter));
+        }
         return null;
     }
 }

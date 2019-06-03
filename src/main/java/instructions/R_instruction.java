@@ -12,6 +12,8 @@ public class R_instruction implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+
+        instruction.execute(interpreter);
         return null;
     }
 }

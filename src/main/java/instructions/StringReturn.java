@@ -15,6 +15,11 @@ public class StringReturn implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
-        return null;
+
+        if (funCall != null) {
+            return funCall.execute(interpreter);
+        } else  {
+            return stringArg.execute(interpreter);
+        }
     }
 }

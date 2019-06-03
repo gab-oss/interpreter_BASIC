@@ -82,12 +82,6 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComp(BasicParser.CompContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BasicParser#logTerm}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLogTerm(BasicParser.LogTermContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link BasicParser#artmExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -141,12 +135,6 @@ public interface BasicVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLen(BasicParser.LenContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BasicParser#input}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInput(BasicParser.InputContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BasicParser#print}.
 	 * @param ctx the parse tree

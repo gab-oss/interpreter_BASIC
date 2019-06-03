@@ -15,6 +15,10 @@ public class MultExpression implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
-        return null;
+        if (positive) {
+            return term.execute(interpreter);
+        } else {
+            return  -1 * (Integer)term.execute(interpreter);
+        }
     }
 }

@@ -16,6 +16,17 @@ public class R_for implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+
+        int count = (Integer)artmExpr.execute(interpreter);
+
+        interpreter.pushBlockContext();
+        intAsignment.execute(interpreter);
+
+        for(int i = (Integer)interpreter.getVar(intAsignment.getId()); i < count; ++i) {
+            rInstructions.execute(interpreter);
+        }
+
+        interpreter.popBlockContext();
         return null;
     }
 }

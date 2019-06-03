@@ -5,20 +5,29 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
+public class BASICVisitorImpl extends BasicBaseVisitor<Instruction> {
 
 //    program               : (stringFunction | intFunction | procedure)* BEGIN NL r_instructions END NL ;
 //
 
     @Override
     public Interpreter visitProgram(BasicParser.ProgramContext ctx) {
+        System.out.println("PROGRAM");
 
         Interpreter interpreter = new Interpreter();
+
         for (ParseTree child:ctx.children) {
-            interpreter.pushInstruction(visit(child));
+            Instruction visited = visit(child);
+            if (visited != null) {
+                interpreter.pushInstruction(visited);
+            }
         }
 
         return interpreter;
+    }
+
+
+
 
 //        List<StringFunction> stringFunctions = new ArrayList<StringFunction>();
 //        List<IntFunction> intFunctions = new ArrayList<IntFunction>();
@@ -40,7 +49,7 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
 //        rInstructions = visitR_instructions(ctx.r_instructions());
 //
 //        return new Program(stringFunctions, intFunctions, procedures, rInstructions);
-    }
+
 
 
 //    intFunction           : INT_FUN ID LEFT_BRACKET ((ID | STRING_ID) (COMMA (ID | STRING_ID))*)? RIGHT_BRACKET NL
@@ -51,25 +60,23 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     public IntFunction visitIntFunction(BasicParser.IntFunctionContext ctx) {
 
 
-        String id = null;
-        int i = 0;
 
+        String id = null;
         List<String> args = new ArrayList<String>();
         R_instructions rInstructions = visitR_instructions(ctx.r_instructions());
         IntReturn intReturn = visitIntReturn(ctx.intReturn());
 
+        int i = 0;
         for(TerminalNode n: ctx.ID()) {
-
             if (i == 0) {
-                id = ctx.ID(i++).toString();
+                id = n.toString();
             } else {
                 args.add(n.toString());
             }
+            ++i;
         }
 
-
         for(TerminalNode n: ctx.STRING_ID()) {
-
             args.add(n.toString());
         }
 
@@ -85,24 +92,22 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     public StringFunction visitStringFunction(BasicParser.StringFunctionContext ctx) {
 
         String id = null;
-        int i = 0;
 
         List<String> args = new ArrayList<String>();
         R_instructions rInstructions = visitR_instructions(ctx.r_instructions());
         StringReturn stringReturn = visitStringReturn(ctx.stringReturn());
 
+        int i = 0;
         for(TerminalNode n: ctx.ID()) {
-
             if (i == 0) {
-                id = ctx.ID(i++).toString();
+                id = n.toString();
             } else {
                 args.add(n.toString());
             }
+            ++i;
         }
 
-
         for(TerminalNode n: ctx.STRING_ID()) {
-
             args.add(n.toString());
         }
 
@@ -117,24 +122,22 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     public Procedure visitProcedure(BasicParser.ProcedureContext ctx) {
 
         String id = null;
-        int i = 0;
 
         List<String> args = new ArrayList<String>();
         R_instructions rInstructions = visitR_instructions(ctx.r_instructions());
 
+        int i = 0;
         for(TerminalNode n: ctx.ID()) {
-
             if (i == 0) {
-               id = ctx.ID(i++).toString();
+                id = n.toString();
             } else {
                 args.add(n.toString());
             }
+            ++i;
         }
 
-
         for(TerminalNode n: ctx.STRING_ID()) {
-
-                args.add(n.toString());
+            args.add(n.toString());
         }
 
         return new Procedure(id, args, rInstructions);
@@ -167,20 +170,25 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     @Override
     public R_if visitR_if(BasicParser.R_ifContext ctx) {
 
-        List<Condition> conditions = new ArrayList<Condition>();
-        List<R_instructions> rinstructions = new ArrayList<R_instructions>();
+//        List<Condition> conditions = new ArrayList<Condition>();
+//        List<R_instructions> rinstructions = new ArrayList<R_instructions>();
+//
+//        for (BasicParser.ConditionContext condContext: ctx.condition()) {
+//
+//            conditions.add(visitCondition(condContext));
+//        }
+//
+//        for (BasicParser.R_instructionsContext riContext: ctx.r_instructions()) {
+//
+//            rinstructions.add(visitR_instructions(riContext));
+//        }
+//
+//        return new R_if(conditions, rinstructions);
 
-        for (BasicParser.ConditionContext condContext: ctx.condition()) {
+        Condition condition = visitCondition(ctx.condition());
+        R_instructions rInstructions = visitR_instructions(ctx.r_instructions());
 
-            conditions.add(visitCondition(condContext));
-        }
-
-        for (BasicParser.R_instructionsContext riContext: ctx.r_instructions()) {
-
-            rinstructions.add(visitR_instructions(riContext));
-        }
-
-        return new R_if(conditions, rinstructions);
+        return new R_if(condition, rInstructions);
 
     }
 
@@ -216,7 +224,12 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
         List<Instruction> instructions = new ArrayList<Instruction>();
 
         for (ParseTree child:ctx.children) {
-            instructions.add(visit(child));
+
+            Instruction visited = visit(child);
+            if (visited != null) {
+                instructions.add(visited);
+
+            }
         }
 
         return new R_instructions(instructions);
@@ -280,10 +293,10 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
 
         if (ctx.stringArg() != null) {
             return new Arg(visitStringArg(ctx.stringArg()));
-        } else if (ctx.artmExpr() != null) {
+        } else {
             return new Arg(visitArtmExpr(ctx.artmExpr()));
-        } else return null;
-    }
+        }
+}
 
 // funCall               : ID LEFT_BRACKET ((arg COMMA)* arg)? RIGHT_BRACKET ;
 
@@ -325,16 +338,12 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     public StringDeclaration visitStringDeclaration(BasicParser.StringDeclarationContext ctx) {
 
         List<String> ids = new ArrayList<String>();
-        List<ArtmExpr> artmExprs = new ArrayList<ArtmExpr>();
-
-        int i = 0;
 
         for (TerminalNode s: ctx.STRING_ID()) {
-            ids.add(ctx.STRING_ID(i).toString());
-            artmExprs.add(visitArtmExpr(ctx.artmExpr(i++)));
+            ids.add(s.toString());
         }
 
-        return new StringDeclaration(ids, artmExprs);
+        return new StringDeclaration(ids);
     }
 
 // intAssignment         : ID ASSIGN artmExpr;
@@ -359,16 +368,16 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
 
 // input                 : INPUT ID (COMMA ID)* ;
 
-    @Override public Input visitInput(BasicParser.InputContext ctx) {
-
-        List<String> ids = new ArrayList<String>();
-
-        for (TerminalNode n: ctx.ID()) {
-            ids.add(n.toString());
-        }
-
-        return new Input(ids);
-    }
+//    @Override public Input visitInput(BasicParser.InputContext ctx) {
+//
+//        List<String> ids = new ArrayList<String>();
+//
+//        for (TerminalNode n: ctx.ID()) {
+//            ids.add(n.toString());
+//        }
+//
+//        return new Input(ids);
+//    }
 
 // read                  : READ STRING_ID (COMMA STRING_ID)* ;
 
@@ -377,8 +386,11 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
 
         List<String> vars = new ArrayList<String>();
 
-        for (TerminalNode n: ctx.STRING_ID()){
-            vars.add(n.toString());
+        int i = 0;
+        vars.add(ctx.getChild(i).toString());
+        for (TerminalNode n: ctx.COMMA()){
+            ++i;
+            vars.add(ctx.getChild(i).toString());
         }
 
         return new Read(vars);
@@ -403,13 +415,11 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
 
     @Override
     public Condition visitCondition(BasicParser.ConditionContext ctx) {
-        Condition condition = new Condition(visitComp(ctx.comp(0)));
-
-        if (ctx.LOG_OPERATOR().isEmpty())
-            return condition;
 
         List<String> operators = new ArrayList<String>();
         List<Comp> comps = new ArrayList<Comp>();
+
+        comps.add(visitComp(ctx.comp(0)));
 
         int i = 1;
 
@@ -421,33 +431,37 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
         return new Condition(comps, operators);
     }
 
-// comp                  : logTerm (COMP_OPERATOR logTerm)* ;
+// comp                  : artmExpr (COMP_OPERATOR artmExpr)* | ( LEFT_PARENTHESES condition RIGHT_PARENTHESES ) ;
 
     @Override
     public Comp visitComp(BasicParser.CompContext ctx) {
 
-        LogTerm term1 = visitLogTerm(ctx.logTerm(0));
-
-        if (ctx.COMP_OPERATOR().isEmpty()) {
-            return new Comp(term1);
+        if (ctx.condition() != null) {
+            return new Comp(visitCondition(ctx.condition()));
         }
 
-        LogTerm term2 = visitLogTerm(ctx.logTerm(1));
+        ArtmExpr expr1 = visitArtmExpr(ctx.artmExpr(0));
 
-        return new Comp(term1, term2, ctx.COMP_OPERATOR(0).toString());
+        if (ctx.COMP_OPERATOR().isEmpty()) {
+            return new Comp(expr1);
+        }
+
+        ArtmExpr expr2 = visitArtmExpr(ctx.artmExpr(1));
+
+        return new Comp(expr1, expr2, ctx.COMP_OPERATOR(0).toString());
     }
 
 //    logTerm               : artmExpr | ( LEFT_PARENTHESES condition RIGHT_PARENTHESES ) ;
-
-    @Override
-    public LogTerm visitLogTerm(BasicParser.LogTermContext ctx) {
-
-        if (ctx.artmExpr() != null) {
-            return new LogTerm(visitArtmExpr(ctx.artmExpr()));
-        } else {
-            return new LogTerm(visitCondition(ctx.condition()));
-        }
-    }
+//
+//    @Override
+//    public LogTerm visitLogTerm(BasicParser.LogTermContext ctx) {
+//
+//        if (ctx.artmExpr() != null) {
+//            return new LogTerm(visitArtmExpr(ctx.artmExpr()));
+//        } else {
+//            return new LogTerm(visitCondition(ctx.condition()));
+//        }
+//    }
 
 // term                  : NUMBER | ID | funCall | len | ( LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ) ;
 
@@ -473,7 +487,7 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     @Override
     public MultExpression visitMultExpression (BasicParser.MultExpressionContext ctx) {
 
-        return new MultExpression(visitTerm(ctx.term()), ctx.MINUS() != null);
+        return new MultExpression(visitTerm(ctx.term()), ctx.MINUS() == null);
 
     }
 
@@ -482,18 +496,39 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     @Override
     public AdditiveExpr visitAdditiveExpr(BasicParser.AdditiveExprContext ctx) {
 
-        AdditiveExpr additiveExpr = new AdditiveExpr(visitMultExpression(ctx.multExpression(0)));
-        if (ctx.MULTI_OPERATOR().isEmpty())
-            return additiveExpr;
+//        List<AdditiveExpr> toAdd = new ArrayList<AdditiveExpr>();
+//        List<AdditiveExpr> toSub = new ArrayList<AdditiveExpr>();
+//
+//
+//        int i = 0;
+//
+//        toAdd.add(visitAdditiveExpr(ctx.additiveExpr(i)));
+//        for (TerminalNode operator : ctx.ADD_OPERATOR()) {
+//            if (operator.getText() == "+")
+//                toAdd.add(visitAdditiveExpr(ctx.additiveExpr(i++)));
+//            else
+//                toSub.add(visitAdditiveExpr(ctx.additiveExpr(i++)));
+//        }
+//
+//        return new ArtmExpr(toAdd, toSub);
 
-        int i = 1;
-        for (TerminalNode operator : ctx.MULTI_OPERATOR()) {
-            if (operator.toString().equals("*"))
-                additiveExpr.multMultExpression(visitMultExpression(ctx.multExpression(i++)));
-            else
-                additiveExpr.divMultExpression(visitMultExpression(ctx.multExpression(i++)));
+        List<MultExpression> multExpressions = new ArrayList<MultExpression>();
+        List<TerminalNode> operators = new ArrayList<TerminalNode>();
+
+        for (BasicParser.MultExpressionContext multExpressionContext: ctx.multExpression()) {
+            multExpressions.add(visitMultExpression(multExpressionContext));
         }
-        return additiveExpr;
+//
+//        AdditiveExpr additiveExpr = new AdditiveExpr(visitMultExpression(ctx.multExpression(0)));
+//        if (ctx.MULTI_OPERATOR().isEmpty())
+//            return additiveExpr;
+
+//        int i = 1;
+        for (TerminalNode operator : ctx.MULTI_OPERATOR()) {
+            operators.add(operator);
+        }
+
+        return new AdditiveExpr(multExpressions, operators);
     }
 
 // artmExpr              : additiveExpr ((PLUS | MINUS) additiveExpr)* ;
@@ -501,20 +536,23 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction>{
     @Override
     public ArtmExpr visitArtmExpr(BasicParser.ArtmExprContext ctx) {
 
-        ArtmExpr artmExpr = new ArtmExpr(visitAdditiveExpr(ctx.additiveExpr(0)));
-        if (ctx.PLUS().isEmpty() && ctx.MINUS().isEmpty())
-            return artmExpr;
+        List<AdditiveExpr> toAdd = new ArrayList<AdditiveExpr>();
+        List<AdditiveExpr> toSub = new ArrayList<AdditiveExpr>();
 
-        int i = 1;
-        for (TerminalNode operator : ctx.PLUS()) {
-                artmExpr.addAdditiveExpr(visitAdditiveExpr(ctx.additiveExpr(i++)));
+
+        int i = 0;
+
+        toAdd.add(visitAdditiveExpr(ctx.additiveExpr(i)));
+        for (TerminalNode operator : ctx.ADD_OPERATOR()) {
+            ++i;
+            if (operator.getSymbol().getType() == BasicLexer.MINUS)
+                toSub.add(visitAdditiveExpr(ctx.additiveExpr(i)));
+
+            else
+                toAdd.add(visitAdditiveExpr(ctx.additiveExpr(i)));
         }
 
-        for (TerminalNode operator : ctx.MINUS()) {
-            artmExpr.subAdditiveExpr(visitAdditiveExpr(ctx.additiveExpr(i++)));
-        }
-
-        return artmExpr;
+        return new ArtmExpr(toAdd, toSub);
     }
 
 }

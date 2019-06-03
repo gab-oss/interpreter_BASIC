@@ -20,10 +20,10 @@ r_for                 : FOR intAssignment TO artmExpr NL
 
 r_if                  : IF condition THEN NL
                         r_instructions
-                        ((ELSIF condition THEN NL
-                        r_instructions)*
-                        ELSE NL
-                        r_instructions)?
+//                        ((ELSIF condition THEN NL
+//                        r_instructions)*
+//                        ELSE NL
+//                        r_instructions)?
                         ENDIF ;
 
 intReturn             : RETURN artmExpr ;
@@ -32,16 +32,14 @@ stringReturn          : RETURN (stringArg | funCall) ;
 
 r_instructions          : (r_instruction NL)+ ;
 
-r_instruction           : intDefinition | stringDeclaration | intAssignment | stringAssignment | input | print
+r_instruction           : intDefinition | stringDeclaration | intAssignment | stringAssignment | print
                       | read | funCall | r_if | r_for ;
 
 condition             : comp (LOG_OPERATOR comp)* ;
 
-comp                  : logTerm (COMP_OPERATOR logTerm)* ;
+comp                  : artmExpr (COMP_OPERATOR artmExpr)* | ( LEFT_PARENTHESES condition RIGHT_PARENTHESES ) ;
 
-logTerm               : artmExpr | ( LEFT_PARENTHESES condition RIGHT_PARENTHESES ) ;
-
-artmExpr              : additiveExpr ((PLUS | MINUS) additiveExpr)* ;
+artmExpr              : additiveExpr (ADD_OPERATOR additiveExpr)* ;
 
 additiveExpr          : multExpression (MULTI_OPERATOR multExpression)* ;
 
@@ -51,7 +49,7 @@ term                  : NUMBER | ID | funCall | len | ( LEFT_PARENTHESES artmExp
 
 intDefinition         : LET intAssignment (COMMA intAssignment)* ;
 
-stringDeclaration     : DIM STRING_ID LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES (COMMA STRING_ID LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES)* ;
+stringDeclaration     : DIM STRING_ID (COMMA STRING_ID)* ;
 
 intAssignment         : ID ASSIGN artmExpr;
 
@@ -59,11 +57,11 @@ stringAssignment      : (STRING_ID | substring) ASSIGN (stringArg | funCall) ;
 
 len                   : LEN  LEFT_PARENTHESES (stringArg | funCall) RIGHT_PARENTHESES;
 
-input                 : INPUT ID (COMMA ID)* ;
+//input                 : INPUT ID (COMMA ID)* ;
 
 print                 : PRINT arg (SEMICOLON arg)* SEMICOLON? ;
 
-read                  : READ STRING_ID (COMMA STRING_ID)* ;
+read                  : READ ( STRING_ID | ID ) (COMMA ( STRING_ID | ID ))* ;
 
 //r_goto                : GOTO ID ;
 //
@@ -115,7 +113,7 @@ READ                  : 'READ'  ;
 
 PRINT                 : 'PRINT' | '?' ;
 
-INPUT                 : 'INPUT' ;
+//INPUT                 : 'INPUT' ;
 
 LEN                   : 'LEN' ;
 
@@ -127,9 +125,9 @@ LOG_OPERATOR          : 'AND' | 'OR' ;
 
 COMP_OPERATOR         : '<' | '>' | '<>' | '==' | '<=' | '>='  ;
 
-PLUS                  : '+' ;
+//PLUS                  : '+' ;
 
-//ADD_OPERATOR        : '+' | MINUS ;
+ADD_OPERATOR        : '+' | MINUS ;
 
 MINUS                 : '-' ;
 

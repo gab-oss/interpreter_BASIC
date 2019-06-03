@@ -15,6 +15,10 @@ public class IntDefinition implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+        for (IntAssignment def: defs) {
+            interpreter.putVar(def.getId(), null);
+            def.execute(interpreter);
+        }
         return null;
     }
 }

@@ -159,18 +159,6 @@ public class BasicBaseListener implements BasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogTerm(BasicParser.LogTermContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLogTerm(BasicParser.LogTermContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterArtmExpr(BasicParser.ArtmExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -274,18 +262,6 @@ public class BasicBaseListener implements BasicListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLen(BasicParser.LenContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterInput(BasicParser.InputContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInput(BasicParser.InputContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

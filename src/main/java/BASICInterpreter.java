@@ -15,7 +15,9 @@ public class BASICInterpreter {
         try {
             loader = new StructureLoader(fileName);
             tree = loader.getParser().program();
-            visitor.visit(tree);
+//            visitor.visit(tree);
+            TreePrinter treePrinter = new TreePrinter(fileName);
+            treePrinter.print();
             interpreter = (Interpreter) visitor.visit(tree);
             interpreter.execute(interpreter);
         } catch (IOException e) {
@@ -25,8 +27,7 @@ public class BASICInterpreter {
 //        TokenPrinter tokenPrinter = new TokenPrinter(fileName);
 //        tokenPrinter.print();
 
-        TreePrinter treePrinter = new TreePrinter(fileName);
-        treePrinter.print();
+
 
     }
 }

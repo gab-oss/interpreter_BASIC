@@ -20,6 +20,10 @@ public class LogTerm implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
-        return null;
+        if (artmExpr != null ) {
+            return artmExpr.execute(interpreter);
+        } else {
+            return condition.execute(interpreter);
+        }
     }
 }

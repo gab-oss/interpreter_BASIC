@@ -12,6 +12,6 @@ public class IntReturn implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
-        return null;
+        return artmExpr.execute(interpreter);
     }
 }

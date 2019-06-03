@@ -15,6 +15,7 @@ public class Input implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
+
         return null;
     }
 }

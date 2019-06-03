@@ -1,10 +1,8 @@
 package instructions;
 
-import org.antlr.v4.runtime.tree.TerminalNode;
-
 public class Term implements Instruction {
 
-    String number;
+    Integer number;
     String id;
     FunCall funCall;
     Len len;
@@ -13,7 +11,7 @@ public class Term implements Instruction {
     public Term(String val, boolean isNumber) {
 
         if (isNumber) {
-            this.number = val;
+            this.number = Integer.parseInt(val);
             System.out.println("Term created with number");
         } else {
             this.id = val;
@@ -46,21 +44,27 @@ public class Term implements Instruction {
     @Override
     public Object execute(Interpreter interpreter) {
 
-
-//        String number;
-//        String id;
-//        FunCall funCall;
-//        Len len;
-//        ArtmExpr artmExpr;
-
       if (number != null) {
           return number;
       }
       if (id != null) {
-          return id;
+          Integer i = (Integer)interpreter.getVar(id);
+          if (i == null) {
+              throw new RuntimeException("Integer variable not assigned");
+          }
+          return i;
       }
       if (funCall != null) {
-          return funCall.execute(interpreter);
+          Integer callResult = (Integer)funCall.execute(interpreter);
+//          try {
+//              Integer.parseInt(callResult);
+//          } catch(NumberFormatException e) {
+//              throw new RuntimeException("String used in arithmetic expression");
+//          } catch(NullPointerException e) {
+//              throw new RuntimeException("String used in arithmetic expression");
+//          }
+
+          return callResult;
       }
       if (len != null) {
           return len.execute(interpreter);

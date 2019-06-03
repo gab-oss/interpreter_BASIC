@@ -21,6 +21,11 @@ public class Len implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
-        return null;
+
+        if (stringArg != null) {
+            return stringArg.execute(interpreter).toString().length();
+        } else {
+            return ((String)funCall.execute(interpreter)).length();
+        }
     }
 }

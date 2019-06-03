@@ -8,14 +8,14 @@ public class Condition implements Instruction {
     private List<Comp> comps;
     private List<String> operators;
 
-    public Condition(Comp comp) {
-
-        comps = new ArrayList<Comp>();
-        comps.add(comp);
-        operators = null;
-
-        System.out.println("Condition created with one comp");
-    }
+//    public Condition(Comp comp) {
+//
+//        comps = new ArrayList<Comp>();
+//        comps.add(comp);
+//        operators = null;
+//
+//        System.out.println("Condition created with one comp");
+//    }
 
     public Condition(List<Comp> comps, List<String> operators) {
 
@@ -26,6 +26,15 @@ public class Condition implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
-        return null;
+
+        Boolean result = (Boolean) comps.get(0).execute(interpreter);
+        for(int i = 1; i < comps.size(); ++i)
+        {
+            if(operators.get(i) == "OR")
+                result = result || (Boolean) comps.get(i).execute(interpreter);
+            else
+                result = result && (Boolean) comps.get(i).execute(interpreter);
+        }
+        return result;
     }
 }

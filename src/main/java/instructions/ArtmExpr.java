@@ -1,23 +1,32 @@
 package instructions;
 
+import java.util.List;
+
 public class ArtmExpr implements Instruction {
 
-    private AdditiveExpr additiveExpr;
+    private List<AdditiveExpr> toAdd;
+    private List<AdditiveExpr> toSub;
 
-    public ArtmExpr(AdditiveExpr additiveExpr) {
+    public ArtmExpr(List<AdditiveExpr> toAdd, List<AdditiveExpr> toSub) {
 
-        this.additiveExpr = additiveExpr;
+        this.toAdd = toAdd;
+        this.toSub = toSub;
         System.out.println("ArtmExpr created");
     }
 
     @Override
     public Object execute(Interpreter interpreter) {
-        return null;
+
+        int result = 0;
+
+        for (AdditiveExpr a: toAdd) {
+            result += (Integer)a.execute(interpreter);
+        }
+
+        for (AdditiveExpr s: toSub) {
+            result -= (Integer)s.execute(interpreter);
+        }
+        return result;
     }
 
-    public void addAdditiveExpr(Instruction instruction) {
-    }
-
-    public void subAdditiveExpr(Instruction instruction) {
-    }
 }

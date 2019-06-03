@@ -26,8 +26,6 @@ BasicParser$ArgContext.class
 BasicParser$SubstringContext.class
 instructions\ArtmExpr.class
 BasicVisitor.class
-BasicParser$LogTermContext.class
-BasicParser$InputContext.class
 BasicParser$R_forContext.class
 BasicParser$StringFunctionContext.class
 BasicLexer.class
