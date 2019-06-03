@@ -389,8 +389,9 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction> {
         int i = 1;
         vars.add(ctx.getChild(i).toString());
         for (TerminalNode n: ctx.COMMA()){
-            ++i;
+            i += 2;
             vars.add(ctx.getChild(i).toString());
+
         }
 
         return new Read(vars);
