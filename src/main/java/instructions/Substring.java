@@ -19,7 +19,7 @@ public class Substring implements Instruction {
         String s = (String)interpreter.getVar(stringId);
 
         if (s != null) {
-            return s.substring((Integer) artmExpr.execute(interpreter));
+            return '"' + s.substring((Integer) artmExpr.execute(interpreter));
 
         } else {
             System.out.println("String " + stringId + " doesn't exist");

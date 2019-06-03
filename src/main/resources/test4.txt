@@ -1,16 +1,14 @@
-FUNCTION$ function[function$,B$,N]
-IF N + 1 > 0 AND (LEN(function$) >= N OR LEN(B$) > N) THEN
+FUNCTION$ function[N,f$,B$]
+IF N + 1 > 0 AND (LEN(f$) >= N OR LEN(B$) > N) THEN
 ? "A"
-ELSIF N > 0 THEN
-? "B"
-ELSE
-? "C"
 ENDIF
-RETURN function$(2)
+RETURN f$(2)
 
 BEGIN
-DIM A$(10),B$(10)
-A$ = "FUNCTION$":B$ = "FUNCTION"
-? "PODAJ LICZBE ";:INPUT N
-? function[A$, B$,N]
+DIM A$,B$,C$
+LET N=0
+A$ = "NAPIS1":B$ = "NAPIS2"
+? "PODAJ LICZBE: ":READ N
+C$ = function[N,A$, B$]
+? C$
 END

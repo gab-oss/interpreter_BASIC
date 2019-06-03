@@ -1,6 +1,9 @@
 package instructions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FunCall implements Instruction {
 
@@ -28,8 +31,10 @@ public class FunCall implements Instruction {
     @Override
     public Object execute(Interpreter interpreter) {
 
-        interpreter.pushCallableContext();
-        interpreter.pushBlockContext();
+        Map<String, Object> argumentValues = new HashMap<String, Object>();
+
+//        interpreter.pushCallableContext();
+//        interpreter.pushBlockContext();
 
         Callable c = interpreter.getCallable(id);
         if(c == null)
@@ -44,7 +49,8 @@ public class FunCall implements Instruction {
             //sprawdz zgodnosc typow argumentow
             if ((args.get(i).isString() && argName.charAt(argName.length() - 1) == '$')
                 || (!args.get(i).isString() && argName.charAt(argName.length() - 1) != '$'))
-                interpreter.putVar(argName, args.get(i).execute(interpreter));
+                    argumentValues.put(argName, args.get(i).execute(interpreter));
+//                interpreter.putVar(argName, args.get(i).execute(interpreter));
             else
                 throw new RuntimeException("Wrong function parameters");
         }
@@ -69,6 +75,12 @@ public class FunCall implements Instruction {
 //                ins.execute(interpreter);
 //        }
 
+        interpreter.pushCallableContext();
+        interpreter.pushBlockContext();
+
+        for (String argName:  c.getArgs()){
+            interpreter.putVar(argName, argumentValues.get(argName));
+        }
 
         for (Instruction ins: c.getInstructions().getInstructions()) {
             ins.execute(interpreter);

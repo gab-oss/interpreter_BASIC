@@ -386,7 +386,7 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction> {
 
         List<String> vars = new ArrayList<String>();
 
-        int i = 0;
+        int i = 1;
         vars.add(ctx.getChild(i).toString());
         for (TerminalNode n: ctx.COMMA()){
             ++i;

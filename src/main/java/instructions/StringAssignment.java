@@ -40,15 +40,15 @@ public class StringAssignment implements Instruction {
             int beginIndex = substring.getBeginIndex(interpreter);
 
             if (stringArg != null) {
-                s = s.substring(0, beginIndex - 1) + stringArg.execute(interpreter);
+                s = s.substring(0, beginIndex + 1) + stringArg.execute(interpreter) + '"';
 
-                if(!interpreter.replaceVar(stringId, s))
+                if(!interpreter.replaceVar(subbstringId, s))
                     throw new RuntimeException("String not declared");
 
             } else {
-                s = s.substring(0, beginIndex - 1) + funCall.execute(interpreter);
+                s = s.substring(0, beginIndex + 1) + funCall.execute(interpreter) + '"';
 
-                if(!interpreter.replaceVar(stringId, s))
+                if(!interpreter.replaceVar(subbstringId, s))
                     throw new RuntimeException("String not declared");
             }
         }

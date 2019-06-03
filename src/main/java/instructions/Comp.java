@@ -82,7 +82,7 @@ public class Comp implements Instruction {
                 }
             }
 
-            if (operator.equals("<==")) {
+            if (operator.equals("<=")) {
                 if (resExpr1 <= resExpr2) {
                     return true;
                 } else {
@@ -90,7 +90,7 @@ public class Comp implements Instruction {
                 }
             }
 
-            if (operator.equals(">==")) {
+            if (operator.equals(">=")) {
                 if (resExpr1 >= resExpr2) {
                     return true;
                 } else {

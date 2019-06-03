@@ -20,7 +20,12 @@ public class Read implements Instruction {
         Scanner scanner = new Scanner(System.in);
 
         for(String var: vars) {
-            if (!interpreter.replaceVar(var, scanner.next())) {
+            String s = scanner.next();
+            if(var.charAt(var.length() - 1) != '$') {
+                if (!interpreter.replaceVar(var, Integer.parseInt(s) )) {
+                    throw new RuntimeException("Tried to read nonexisting variable");
+                }
+            } else if (!interpreter.replaceVar(var, s)) {
                 throw new RuntimeException("Tried to read nonexisting variable");
             }
 
