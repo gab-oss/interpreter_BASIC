@@ -30,7 +30,7 @@ public class Condition implements Instruction {
         Boolean result = (Boolean) comps.get(0).execute(interpreter);
         for(int i = 1; i < comps.size(); ++i)
         {
-            if(operators.get(i) == "OR")
+            if(operators.get(i - 1).equals("OR"))
                 result = result || (Boolean) comps.get(i).execute(interpreter);
             else
                 result = result && (Boolean) comps.get(i).execute(interpreter);

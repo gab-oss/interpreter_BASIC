@@ -19,7 +19,7 @@ public class IntAssignment implements Instruction{
         int value = (Integer)artmExpr.execute(interpreter);
 
         if (!interpreter.replaceVar(id, value))
-            throw new RuntimeException("Integer not declared");
+            interpreter.putVar(id, value);
 
         return null;
     }

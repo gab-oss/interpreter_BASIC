@@ -33,6 +33,10 @@ public class Comp implements Instruction {
     @Override
     public Object execute(Interpreter interpreter) {
 
+        if(condition != null ){
+            return condition.execute(interpreter);
+        }
+
         if (expr2 == null)
             if ((Integer)expr1.execute(interpreter) >= 0) {
                 return true;

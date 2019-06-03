@@ -23,9 +23,9 @@ public class Len implements Instruction {
     public Object execute(Interpreter interpreter) {
 
         if (stringArg != null) {
-            return stringArg.execute(interpreter).toString().length();
+            return stringArg.execute(interpreter).toString().length() - 2;
         } else {
-            return ((String)funCall.execute(interpreter)).length();
+            return ((String)funCall.execute(interpreter)).length() - 2;
         }
     }
 }

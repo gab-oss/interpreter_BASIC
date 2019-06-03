@@ -22,7 +22,7 @@ public class R_for implements Instruction {
         interpreter.pushBlockContext();
         intAsignment.execute(interpreter);
 
-        for(int i = (Integer)interpreter.getVar(intAsignment.getId()); i < count; ++i) {
+        for(int i = (Integer)interpreter.getVar(intAsignment.getId()); i <= count; ++i) {
             rInstructions.execute(interpreter);
         }
 

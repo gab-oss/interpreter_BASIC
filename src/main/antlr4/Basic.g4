@@ -43,7 +43,7 @@ artmExpr              : additiveExpr (ADD_OPERATOR additiveExpr)* ;
 
 additiveExpr          : multExpression (MULTI_OPERATOR multExpression)* ;
 
-multExpression        : MINUS? term ;
+multExpression        : ('-')? term ;
 
 term                  : NUMBER | ID | funCall | len | ( LEFT_PARENTHESES artmExpr RIGHT_PARENTHESES ) ;
 

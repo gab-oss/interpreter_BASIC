@@ -487,7 +487,8 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction> {
     @Override
     public MultExpression visitMultExpression (BasicParser.MultExpressionContext ctx) {
 
-        return new MultExpression(visitTerm(ctx.term()), ctx.MINUS() == null);
+        boolean positive = "-".equals(ctx.getChild(0).toString())?false:true;
+        return new MultExpression(visitTerm(ctx.term()), positive);
 
     }
 
@@ -545,7 +546,7 @@ public class BASICVisitorImpl extends BasicBaseVisitor<Instruction> {
         toAdd.add(visitAdditiveExpr(ctx.additiveExpr(i)));
         for (TerminalNode operator : ctx.ADD_OPERATOR()) {
             ++i;
-            if (operator.getSymbol().getType() == BasicLexer.MINUS)
+            if (operator.getText().charAt(0) == '-')
                 toSub.add(visitAdditiveExpr(ctx.additiveExpr(i)));
 
             else

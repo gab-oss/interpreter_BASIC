@@ -1322,7 +1322,6 @@ public class BasicParser extends Parser {
 		public TermContext term() {
 			return getRuleContext(TermContext.class,0);
 		}
-		public TerminalNode MINUS() { return getToken(BasicParser.MINUS, 0); }
 		public MultExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
