@@ -25,7 +25,7 @@ public class Read implements Instruction {
                 if (!interpreter.replaceVar(var, Integer.parseInt(s) )) {
                     throw new RuntimeException("Tried to read nonexisting variable");
                 }
-            } else if (!interpreter.replaceVar(var, s)) {
+            } else if (!interpreter.replaceVar(var, '"' + s + '"')) {
                 throw new RuntimeException("Tried to read nonexisting variable");
             }
 

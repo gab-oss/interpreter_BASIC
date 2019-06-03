@@ -1,7 +1,7 @@
 FUNCTION$ CONC[N,A$,B$]
 DIM C$
 C$=A$
-C$(LEN(A$))=B$(N)
+C$(LEN(A$)-1)=B$(N)
 RETURN C$
 
 BEGIN
