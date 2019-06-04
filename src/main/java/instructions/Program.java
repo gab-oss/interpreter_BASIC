@@ -16,7 +16,6 @@ public class Program implements Instruction {
         this.procedures = procedures;
         this.rInstructions = rInstructions;
 
-        System.out.println("Program created");
     }
 
     @Override

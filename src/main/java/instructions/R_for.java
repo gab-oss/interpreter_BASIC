@@ -10,7 +10,6 @@ public class R_for implements Instruction {
         this.intAsignment = intAssignment;
         this.artmExpr = artmExpr;
         this.rInstructions = rInstructions;
-        System.out.println("For created");
 
     }
 

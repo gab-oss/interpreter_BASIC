@@ -9,8 +9,6 @@ public class StringReturn implements Instruction {
         this.stringArg = stringArg;
         this.funCall = funCall;
 
-        System.out.println("StringReturn created");
-
     }
 
     @Override

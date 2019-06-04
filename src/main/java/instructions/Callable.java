@@ -27,13 +27,6 @@ public abstract class Callable implements Instruction {
     }
 
     @Override
-    public int hashCode() {
-        return (/*type.hashCode()*/id.hashCode() /*+ args.hashCode() /*+ instructions.hashCode()*/) % 31;
-    }
-
-
-
-    @Override
     public boolean equals(Object obj) {
         return getClass().equals(obj.getClass())
                 && id.equals(((Callable) obj).getId());
@@ -41,10 +34,8 @@ public abstract class Callable implements Instruction {
 
     @Override
     public Object execute(Interpreter interpreter) {
-        System.out.println("EXECUTE INTFUNCTION");
         if(!interpreter.pushCallable(this))
             throw new RuntimeException("Function already exists");
-        System.out.println("EXECUTED INTFUNCTION");
         return null;
     }
 

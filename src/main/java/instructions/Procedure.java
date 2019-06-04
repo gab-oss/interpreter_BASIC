@@ -7,7 +7,6 @@ public class Procedure extends Callable{
     public Procedure(String id, List<String> args, R_instructions rInstructions) {
 
         super(id, args, rInstructions);
-        System.out.println("Procedure created");
 
     }
 

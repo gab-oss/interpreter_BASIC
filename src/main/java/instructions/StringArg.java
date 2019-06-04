@@ -15,14 +15,12 @@ public class StringArg  implements Instruction {
     public StringArg(TerminalNode stringId) {
 
         this.stringId = stringId;
-        System.out.println("StringArg created with String");
 
     }
 
     public StringArg(Substring substring) {
 
         this.substring = substring;
-        System.out.println("StringArg created with Substring");
 
     }
 

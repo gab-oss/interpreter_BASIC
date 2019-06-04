@@ -14,7 +14,6 @@ public class FunCall implements Instruction {
 
         this.id = id;
         this.args = null;
-        System.out.println("FunCall created without arguments");
 
     }
 
@@ -22,7 +21,6 @@ public class FunCall implements Instruction {
 
         this.id = id;
         this.args = args;
-        System.out.println("FunCall created with arguments");
 
     }
 
@@ -33,8 +31,6 @@ public class FunCall implements Instruction {
 
         Map<String, Object> argumentValues = new HashMap<String, Object>();
 
-//        interpreter.pushCallableContext();
-//        interpreter.pushBlockContext();
 
         Callable c = interpreter.getCallable(id);
         if(c == null)
@@ -54,26 +50,6 @@ public class FunCall implements Instruction {
             else
                 throw new RuntimeException("Wrong function parameters");
         }
-//
-//        Object value = null;
-//
-//        if (c.getClass().equals(Procedure.class)) {
-//            for (Instruction ins: c.getInstructions().getInstructions()) {
-//                ins.execute(interpreter);
-//            }
-//            return null;
-//        }
-//
-//        for (Instruction ins: c.getInstructions().getInstructions()) {
-//            if(IntReturn.class.equals(ins.getClass())){
-//                value = ins.execute(interpreter);
-//                break;
-//            } else if (StringReturn.class.equals(interpreter)) {
-//                value = ins.execute(interpreter);
-//                break;
-//            } else
-//                ins.execute(interpreter);
-//        }
 
         interpreter.pushCallableContext();
         interpreter.pushBlockContext();

@@ -11,7 +11,6 @@ public class ArtmExpr implements Instruction {
 
         this.toAdd = toAdd;
         this.toSub = toSub;
-        System.out.println("ArtmExpr created");
     }
 
     @Override

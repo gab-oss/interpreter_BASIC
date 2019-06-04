@@ -3,7 +3,7 @@ package instructions;
 import java.util.List;
 
 public class R_if implements Instruction {
-//    private List<Condition> conditions;
+
     private Condition condition;
     private R_instructions rinstructions;
 
@@ -11,7 +11,6 @@ public class R_if implements Instruction {
 
         this.condition = condition;
         this.rinstructions = rinstructions;
-        System.out.println("If created");
 
     }
 
@@ -21,17 +20,6 @@ public class R_if implements Instruction {
         if ((Boolean) condition.execute(interpreter)) {
             rinstructions.execute(interpreter);
         }
-
-
-//        for(Condition condition: conditions) {
-//            if((Integer)condition.execute(interpreter) == 0) {
-//                return null;
-//            }
-//        }
-
-//        for (Instruction instruction: rinstructions) {
-//            instruction.execute(interpreter);
-//        }
 
         return null;
     }

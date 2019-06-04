@@ -9,7 +9,6 @@ public class IntDefinition implements Instruction {
     public IntDefinition(List<IntAssignment> defs) {
 
         this.defs = defs;
-        System.out.println("IntDefinition created");
 
     }
 

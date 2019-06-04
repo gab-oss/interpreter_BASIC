@@ -9,7 +9,6 @@ public class Print implements Instruction {
     public Print(List<Arg> args) {
 
         this.args = args;
-        System.out.println("Print created");
 
     }
 

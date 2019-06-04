@@ -10,7 +10,6 @@ public class Arg implements Instruction{
 
         this.artmExpr = artmExpr;
         isString = false;
-        System.out.println("Arg created");
     }
 
     public Arg(StringArg stringArg) {

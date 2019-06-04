@@ -6,7 +6,6 @@ public class IntReturn implements Instruction {
     public IntReturn(ArtmExpr artmExpr) {
 
         this.artmExpr = artmExpr;
-        System.out.println("IntReturn created");
 
     }
 

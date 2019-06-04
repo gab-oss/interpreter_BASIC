@@ -9,7 +9,6 @@ public class IntAssignment implements Instruction{
 
         this.id = id;
         this.artmExpr = artmExpr;
-        System.out.println("IntAssignment created");
 
     }
 

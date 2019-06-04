@@ -12,10 +12,8 @@ public class Term implements Instruction {
 
         if (isNumber) {
             this.number = Integer.parseInt(val);
-            System.out.println("Term created with number");
         } else {
             this.id = val;
-            System.out.println("Term created with id");
         }
 
     }
@@ -23,21 +21,18 @@ public class Term implements Instruction {
     public Term(FunCall funCall) {
 
         this.funCall = funCall;
-        System.out.println("Term created with FunCall");
 
     }
 
     public Term(Len len) {
 
         this.len = len;
-        System.out.println("Term created with Len");
 
     }
 
     public Term(ArtmExpr artmExpr) {
 
         this.artmExpr = artmExpr;
-        System.out.println("Term created with ArtmExpr");
 
     }
 
@@ -56,13 +51,6 @@ public class Term implements Instruction {
       }
       if (funCall != null) {
           Integer callResult = (Integer)funCall.execute(interpreter);
-//          try {
-//              Integer.parseInt(callResult);
-//          } catch(NumberFormatException e) {
-//              throw new RuntimeException("String used in arithmetic expression");
-//          } catch(NullPointerException e) {
-//              throw new RuntimeException("String used in arithmetic expression");
-//          }
 
           return callResult;
       }

@@ -10,8 +10,6 @@ public class StringDeclaration implements Instruction {
 
         this.ids = ids;
 
-        System.out.println("StringDeclaration created");
-
     }
 
     @Override

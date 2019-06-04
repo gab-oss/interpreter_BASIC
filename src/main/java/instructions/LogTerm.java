@@ -7,14 +7,12 @@ public class LogTerm implements Instruction {
 
     public LogTerm(ArtmExpr ae) {
         this.artmExpr = artmExpr;
-        System.out.println("LogTerm created with ArtmExpr");
 
     }
 
     public LogTerm(Condition condition) {
 
         this.condition = condition;
-        System.out.println("LogTerm created with Condition");
 
     }
 

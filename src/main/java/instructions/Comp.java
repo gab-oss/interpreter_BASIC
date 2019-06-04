@@ -13,7 +13,6 @@ public class Comp implements Instruction {
         this.expr1 = expr1;
         this.expr2 = null;
         this.operator = null;
-        System.out.println("Comp created with one term");
     }
 
     public Comp(ArtmExpr expr1, ArtmExpr expr2, String operator) {
@@ -21,7 +20,6 @@ public class Comp implements Instruction {
         this.expr1 = expr1;
         this.expr2 = expr2;
         this.operator = operator;
-        System.out.println("Comp created with two terms");
     }
 
     public Comp(Condition condition) {

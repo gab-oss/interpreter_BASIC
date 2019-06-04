@@ -3,18 +3,18 @@ package instructions;
 import java.util.*;
 
 public class Interpreter implements Instruction{
-    private Map<String, Object> globals;
+    private Map<String, Object> mainBlockVars;
     private Set<Callable> callables;
     private Stack<List<Map<String, Object>>> vars;
 
     private List<Instruction> instructions;
 
     public Interpreter() {
-        globals = new HashMap<String, Object>();
+        mainBlockVars = new HashMap<String, Object>();
         callables = new HashSet<Callable>();
         vars = new Stack<List<Map<String, Object>>>();
         List<Map<String, Object>> globalContext = new LinkedList<Map<String, Object>>();
-        globalContext.add(globals);
+        globalContext.add(mainBlockVars);
         vars.push(globalContext);
         instructions = new LinkedList();
     }
@@ -34,7 +34,6 @@ public class Interpreter implements Instruction{
     boolean replaceVar(String id, Object value)
     {
         for (Map<String, Object> var:vars.peek()) {
-        //    if(var.containsKey(id) && var.get(id).getClass().equals(value.getClass()))
             if(var.containsKey(id))
             {
                 var.put(id, value);
@@ -70,7 +69,6 @@ public class Interpreter implements Instruction{
             System.out.println("EMPTY");
         }
         for (Instruction instruction:instructions) {
-            System.out.println( "EXECUTING" + instruction.toString());
 
             instruction.execute(this);
         }
@@ -84,7 +82,7 @@ public class Interpreter implements Instruction{
 
     public Boolean pushCallable(Callable c)
     {
-        System.out.println("PUSHED CALLABLE");
+
         return callables.add(c);
     }
 

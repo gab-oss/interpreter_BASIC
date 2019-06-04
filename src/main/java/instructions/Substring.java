@@ -9,8 +9,6 @@ public class Substring implements Instruction {
         this.stringId = id;
         this.artmExpr = artmExpr;
 
-        System.out.println("Substring created");
-
     }
 
     @Override
@@ -28,8 +26,7 @@ public class Substring implements Instruction {
 
 
         } else {
-            System.out.println("String " + stringId + " doesn't exist");
-            return null;
+            throw new RuntimeException("String " + stringId + " doesn't exist");
         }
     }
 

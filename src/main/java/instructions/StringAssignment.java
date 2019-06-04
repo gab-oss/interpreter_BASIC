@@ -14,8 +14,6 @@ public class StringAssignment implements Instruction {
         this.stringArg = stringArg;
         this.funCall = funCall;
 
-        System.out.println("StringAssignment created");
-
     }
 
     @Override

@@ -10,7 +10,6 @@ public class Read implements Instruction {
     public Read(List<String> vars) {
 
         this.vars = vars;
-        System.out.println("Read created");
 
     }
 

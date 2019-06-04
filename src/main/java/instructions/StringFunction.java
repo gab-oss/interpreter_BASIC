@@ -11,7 +11,6 @@ public class StringFunction extends Callable {
         super(id, args, rInstructions);
         this.stringReturn = stringReturn;
 
-        System.out.println("StringFunction created");
 
     }
 

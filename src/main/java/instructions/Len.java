@@ -8,14 +8,12 @@ public class Len implements Instruction {
     public Len(StringArg stringArg) {
 
         this.stringArg = stringArg;
-        System.out.println("Len created with stringArg");
 
     }
 
     public Len(FunCall funCall) {
 
         this.funCall = funCall;
-        System.out.println("Len created with funCall");
 
     }
 
@@ -23,9 +21,9 @@ public class Len implements Instruction {
     public Object execute(Interpreter interpreter) {
 
         if (stringArg != null) {
-            return stringArg.execute(interpreter).toString().length() - 2;
+            return stringArg.execute(interpreter).toString().length();
         } else {
-            return ((String)funCall.execute(interpreter)).length() - 2;
+            return ((String)funCall.execute(interpreter)).length();
         }
     }
 }

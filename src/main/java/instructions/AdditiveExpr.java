@@ -6,14 +6,6 @@ import java.util.List;
 
 public class AdditiveExpr implements Instruction{
 
-//    private MultExpression multExpression;
-
-//    public AdditiveExpr(MultExpression multExpression) {
-//
-//        this.multExpression = multExpression;
-//        System.out.println("AdditiveExpr created");
-//    }
-
     List<MultExpression> multExpressions;
     List<TerminalNode> operators;
 
@@ -47,9 +39,4 @@ public class AdditiveExpr implements Instruction{
         return result;
     }
 
-//    public void multMultExpression(Instruction instruction) {
-//    }
-//
-//    public void divMultExpression(Instruction instruction) {
-//    }
 }

@@ -1,5 +1,5 @@
 FUNCTION$ function[N,f$,B$]
-IF N + 1 > 0 AND (LEN(f$) >= N OR LEN(B$) > N) THEN
+IF N > 0 AND (LEN(f$) >= N OR LEN(B$) > N) THEN
 ? "A"
 ENDIF
 RETURN f$(2)

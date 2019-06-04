@@ -10,7 +10,6 @@ public class IntFunction extends Callable{
 
         super(id, args, rInstructions);
         this.intReturn = intReturn;
-        System.out.println("IntFunction created");
 
     }
 
@@ -18,9 +17,5 @@ public class IntFunction extends Callable{
         return intReturn;
     }
 
-//
-//    @Override
-//    public Object execute(Interpreter interpreter) {
-//        return null;
-//    }
+
 }
